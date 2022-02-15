@@ -18,5 +18,6 @@ function itemReducer(items, action) {
 }
 
 export default function ShoppingList() {
+    const [items, dispatch] = 
   return <div></div>;
 }
