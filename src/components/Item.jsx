@@ -1,6 +1,7 @@
 import React from 'react';
+import { useState } from 'react';
 
-export default function Item({ item, handleDeleteItem, handleDeleteItem }) {
+export default function Item({ item, handleEditItem, handleDeleteItem }) {
   const [isEditing, setIsEditing] = useState(false);
   let itemContent;
   if (isEditing) {
@@ -9,22 +10,30 @@ export default function Item({ item, handleDeleteItem, handleDeleteItem }) {
         <input
           value={item.text}
           onChange={(e) => {
-            onChange({ ...item, text: e.target.value });
+            handleEditItem({ ...item, text: e.target.value });
           }}
         />
+        <button type="button" onClick={() => setIsEditing(false)}>
+          Save
+        </button>
+      </>
+    );
+  } else {
+    itemContent = (
+      <>
+        <p>{item.text}</p>
+        <button type="button" onClick={() => setIsEditing(true)}>
+          Edit
+        </button>
       </>
     );
   }
   return (
-    <>
-      <h1>{item.text}</h1>
+    <div>
+      {itemContent}
       <button type="button" onClick={() => handleDeleteItem(item.id)}>
         Delete
       </button>
-      <button type="button" onClick={() => setEdit(true)}>
-        Edit
-      </button>
-      {editContent})
-    </>
+    </div>
   );
 }
