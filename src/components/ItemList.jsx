@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Item from './Item';
 
-export default function ItemList({ items, handleDeleteItem }) {
+export default function ItemList({ items, handleDeleteItem, handleEditItem }) {
   return (
     <>
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            <h1>{item.text}</h1>
-            <button type="button" onClick={() => handleDeleteItem(item.id)}>
-              Delete
-            </button>
+            {' '}
+            <Item
+              item={item}
+              handleDeleteItem={handleDeleteItem}
+              handleEditItem={handleEditItem}
+            />{' '}
           </li>
         ))}
       </ul>

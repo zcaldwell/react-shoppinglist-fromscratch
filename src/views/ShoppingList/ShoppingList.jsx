@@ -15,6 +15,14 @@ function itemReducer(items, action) {
     case 'delete': {
       return items.filter((item) => item.id !== action.id);
     }
+    case 'edit': {
+      return items.map((item) => {
+        if (item.id === action.task.id) {
+          return action.task;
+        }
+        return item;
+      });
+    }
     default: {
       throw Error(`Unknown action: ${action.type}`);
     }
@@ -56,7 +64,11 @@ export default function ShoppingList() {
         </form>
       </div>
       <div>
-        <ItemList items={items} handleDeleteItem={handleDeleteItem} />
+        <ItemList
+          items={items}
+          handleDeleteItem={handleDeleteItem}
+          handleEditItem={handleEditItem}
+        />
       </div>
     </>
   );
