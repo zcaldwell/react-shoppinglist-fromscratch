@@ -2,9 +2,9 @@ import React, { useReducer, useState } from 'react';
 import ItemList from '../../components/ItemList';
 
 const initialItems = [
-  { id: 0, text: 'Meat 🍖', done: false },
-  { id: 1, text: 'Potatoes 🥔', done: false },
-  { id: 2, text: 'Broccoli 🥦', done: false },
+  { id: 0, text: 'Meat' },
+  { id: 1, text: 'Carrots' },
+  { id: 2, text: 'Broccoli' },
 ];
 
 function itemReducer(items, action) {
