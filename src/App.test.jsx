@@ -12,6 +12,7 @@ test('When button is pressed a new item is added', () => {
   const button = screen.getByRole('button', { name: /add item/i });
 
   userEvent.click(button);
+
   const item = screen.getByText('Banana');
 });
 
@@ -43,4 +44,22 @@ test('The edit button changes an entry', () => {
   userEvent.click(saveButton);
 
   const item = screen.getByText('Meats');
+});
+
+test('There are 3 list items at start and clear should remove', () => {
+  render(<App />);
+
+  const itemList = screen.getAllByRole('listitem');
+
+  expect(itemList).toHaveLength(3);
+
+  const button = screen.getByRole('button', {
+    name: /clear/i,
+  });
+
+  userEvent.click(button);
+
+  const clearList = screen.queryAllByRole('listitem');
+
+  expect(clearList).toHaveLength(0);
 });

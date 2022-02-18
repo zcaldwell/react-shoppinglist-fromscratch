@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 
 const initialItems = [
   { id: 0, text: 'Meat' },
@@ -22,6 +22,9 @@ function itemReducer(items, action) {
         return item;
       });
     }
+    case 'clear': {
+      return (items = []);
+    }
     default: {
       throw Error(`Unknown action: ${action.type}`);
     }
@@ -44,6 +47,9 @@ const ItemsProvider = ({ children }) => {
   const handleEditItem = (task) => {
     dispatch({ type: 'edit', task });
   };
+  const handleClearCart = (items) => {
+    dispatch({ type: 'clear', items });
+  };
 
   return (
     <ItemsContext.Provider
@@ -52,6 +58,7 @@ const ItemsProvider = ({ children }) => {
         handleAddItem,
         handleDeleteItem,
         handleEditItem,
+        handleClearCart,
       }}
     >
       {children}

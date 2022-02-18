@@ -6,6 +6,7 @@ export default function ShoppingList() {
   const [newItem, setNewItem] = useState('');
 
   const { handleDeleteItem, handleEditItem, items, handleAddItem } = useItems();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setNewItem('');
