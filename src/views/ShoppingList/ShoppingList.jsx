@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ItemList from '../../components/ItemList';
+import ItemList from '../../components/ItemList/ItemList';
 import { useItems } from '../../context/ItemsContext';
 
 export default function ShoppingList() {

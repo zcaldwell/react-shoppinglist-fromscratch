@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import styles from './Item.css';
 
 export default function Item({ item, handleEditItem, handleDeleteItem }) {
   const [isEditing, setIsEditing] = useState(false);
+
+  const { listDiv } = styles;
   let itemContent;
   if (isEditing) {
     itemContent = (
@@ -37,7 +40,7 @@ export default function Item({ item, handleEditItem, handleDeleteItem }) {
     );
   }
   return (
-    <div>
+    <div className={listDiv}>
       {itemContent}
       <button
         aria-label={`Delete ${item.text}`}
