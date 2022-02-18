@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import styles from './Item.css';
 
 export default function Item({ item, handleEditItem, handleDeleteItem }) {
   const [isEditing, setIsEditing] = useState(false);
+
+  const { listDiv } = styles;
   let itemContent;
   if (isEditing) {
     itemContent = (
@@ -13,7 +16,11 @@ export default function Item({ item, handleEditItem, handleDeleteItem }) {
             handleEditItem({ ...item, text: e.target.value });
           }}
         />
-        <button type="button" onClick={() => setIsEditing(false)}>
+        <button
+          aria-label={'Save Button'}
+          type="button"
+          onClick={() => setIsEditing(false)}
+        >
           Save
         </button>
       </>
@@ -22,16 +29,24 @@ export default function Item({ item, handleEditItem, handleDeleteItem }) {
     itemContent = (
       <>
         <p>{item.text}</p>
-        <button type="button" onClick={() => setIsEditing(true)}>
+        <button
+          aria-label={`Edit ${item.text}`}
+          type="button"
+          onClick={() => setIsEditing(true)}
+        >
           Edit
         </button>
       </>
     );
   }
   return (
-    <div>
+    <div className={listDiv}>
       {itemContent}
-      <button type="button" onClick={() => handleDeleteItem(item.id)}>
+      <button
+        aria-label={`Delete ${item.text}`}
+        type="button"
+        onClick={() => handleDeleteItem(item.id)}
+      >
         Delete
       </button>
     </div>
