@@ -13,7 +13,11 @@ export default function Item({ item, handleEditItem, handleDeleteItem }) {
             handleEditItem({ ...item, text: e.target.value });
           }}
         />
-        <button type="button" onClick={() => setIsEditing(false)}>
+        <button
+          aria-label={'Save Button'}
+          type="button"
+          onClick={() => setIsEditing(false)}
+        >
           Save
         </button>
       </>
@@ -22,7 +26,11 @@ export default function Item({ item, handleEditItem, handleDeleteItem }) {
     itemContent = (
       <>
         <p>{item.text}</p>
-        <button type="button" onClick={() => setIsEditing(true)}>
+        <button
+          aria-label={`Edit ${item.text}`}
+          type="button"
+          onClick={() => setIsEditing(true)}
+        >
           Edit
         </button>
       </>
@@ -31,7 +39,11 @@ export default function Item({ item, handleEditItem, handleDeleteItem }) {
   return (
     <div>
       {itemContent}
-      <button type="button" onClick={() => handleDeleteItem(item.id)}>
+      <button
+        aria-label={`Delete ${item.text}`}
+        type="button"
+        onClick={() => handleDeleteItem(item.id)}
+      >
         Delete
       </button>
     </div>

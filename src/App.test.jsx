@@ -6,15 +6,41 @@ test('When button is pressed a new item is added', () => {
   render(<App />);
 
   const itemInput = screen.getByRole('textbox');
-  expect(itemInput).toBeInTheDocument();
 
   userEvent.type(itemInput, 'Banana');
-  expect(itemInput.value).toBe('Banana');
 
   const button = screen.getByRole('button', { name: /add item/i });
-  expect(button).toBeInTheDocument();
 
   userEvent.click(button);
   const item = screen.getByText('Banana');
-  expect(item).toBeInTheDocument();
+});
+
+test('The delete button removes an entry', () => {
+  render(<App />);
+
+  const button = screen.getByLabelText('Delete Meat');
+
+  const item = screen.getByText('Meat');
+
+  userEvent.click(button);
+
+  expect(item).not.toBeInTheDocument('Meat');
+});
+
+test('The edit button changes an entry', () => {
+  render(<App />);
+
+  const button = screen.getByLabelText('Edit Meat');
+
+  userEvent.click(button);
+
+  const input = screen.getByDisplayValue('Meat');
+
+  userEvent.type(input, 's');
+
+  const saveButton = screen.getByLabelText('Save Button');
+
+  userEvent.click(saveButton);
+
+  const item = screen.getByText('Meats');
 });
